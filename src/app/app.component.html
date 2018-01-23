@@ -1,0 +1,36 @@
+<div class="main">
+  <div class="jumbotron">
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)" *ngIf="!isLoggedIn()">
+      <div class="form-group" [ngClass]="{'has-error': loginForm.controls['email'].touched && !loginForm.controls['email'].valid}">
+        <label>email</label>
+        <input class="form-control" type="email" placeholder="type your email" [formControl]="loginForm.controls['email']">
+        <div class="alert alert-danger" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].hasError('email')">Incorrect email</div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': loginForm.controls['password'].touched && !loginForm.controls['password'].valid}">
+        <label>password</label>
+        <input class="form-control" type="password" placeholder="type your password" [formControl]="loginForm.controls['password']">
+        <div class="alert alert-danger" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].hasError('required')">Password could not be empty</div>
+        <div class="alert alert-danger" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].hasError('minlength')">Password shoud have min 3 chars</div>
+      </div>
+      <div class="alert alert-danger" *ngIf="err">
+        {{err.message}}
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Log In</button>
+      </div>
+    </form>
+    <div class="dashboard" *ngIf="isLoggedIn()">
+      <h1>Hello {{getUserName()}}</h1>
+      <div class="panel-group" *ngIf="isAdmin()">
+        <div class="panel panel-success">
+          <div class="panel-heading">Admin panel</div>
+          <div class="panel-body">This panel is visible only for admin</div>
+        </div>
+      </div>
+      <a href="" (click)="onLogout()">Log Out</a>
+      <a routerLink="/administration" *ngIf="isAdmin()">Administration</a>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+

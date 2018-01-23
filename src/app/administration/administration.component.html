@@ -1,0 +1,20 @@
+<div class="admin-board">
+  <div class="jumbotron">
+    <h3>This is fake admin panel</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.name}}</td>
+          <td>{{user.role}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

@@ -1,0 +1,16 @@
+.main {
+  padding: 30px;
+}
+
+.main form,
+.main .dashboard {
+  margin: 30px;
+}
+
+.jumbotron {
+  border-radius: 10px;
+}
+
+a {
+  padding: 0 10px;
+}
